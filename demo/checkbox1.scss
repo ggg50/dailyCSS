@@ -1,0 +1,53 @@
+* { padding: 0; margin: 0; box-sizing: border-box; }
+*::after{ box-sizing: border-box; }
+
+$checkboxSize: 30px;
+$checkboxWidth: 2 * $checkboxSize;
+$checkboxBackgroundForOFF: #f0f0f0;
+$checkboxBackgroundForON: #9FD6AE;
+$checkboxButtonColor: #fff;
+
+.checkboxWrapper {
+  width: $checkboxWidth;
+  height: $checkboxSize;
+  position: relative;
+
+  & label {
+    display: block;
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    width: $checkboxWidth;
+    height: $checkboxSize;
+    box-sizing: content-box;
+    border: 2px solid $checkboxBackgroundForOFF;
+    border-radius: $checkboxWidth;
+    background-color: $checkboxBackgroundForOFF;
+    transition: all 0.4s ease;
+
+    &::after {
+      content: "";
+      width: $checkboxSize;
+      height: $checkboxSize;
+      background-color: $checkboxButtonColor;
+      transition: all 0.2s ease;
+      border-radius: 50%;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  }
+
+  & input:checked + label{
+    background-color: $checkboxBackgroundForON;
+    border-color: $checkboxBackgroundForON;
+    &::after{
+      left: $checkboxWidth - $checkboxSize;
+    }
+  }
+
+  & input {
+    opacity: 0;
+  }
+}
