@@ -1,0 +1,59 @@
+
+* { padding: 0; margin: 0; box-sizing: border-box; }
+*::after{ box-sizing: border-box; }
+
+$checkboxSize: 30px;
+$checkboxWidthTimes: 2.2;
+$switcherWidthTimes: 1.1; /* 可以是椭圆形的内部按钮，可自行设置宽高比 */
+$checkboxWidth: $checkboxWidthTimes * $checkboxSize;
+$switcherWidth: $checkboxSize * $switcherWidthTimes;
+$checkboxBackgroundForOFF: #f0f0f0;
+$checkboxBackgroundForON: #86d993;
+$checkboxButtonColor: #fff;
+$interspace: 3px; /* 按钮与背景边框间隙大小 */
+
+.checkboxWrapper {
+  width: $checkboxWidth;
+  height: $checkboxSize;
+  position: relative;
+
+  & label {
+    display: block;
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    width: $checkboxWidth + 2 * $interspace;
+    height: $checkboxSize + 2 * $interspace;
+    box-sizing: content-box;
+    border-radius: $checkboxWidth;
+    background-color: $checkboxBackgroundForOFF;
+    transition: all 0.2s ease;
+    overflow: hidden;
+
+    &::after {
+      content: "";
+      width: $switcherWidth;
+      height: $checkboxSize;
+      background-color: $checkboxButtonColor;
+      transition: left 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border-radius: 2 * $switcherWidth;
+      position: absolute;
+      top: $interspace;
+      left: $interspace;
+      box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 4px 0 rgba(0, 0, 0, 0.08);
+    }
+  }
+
+  & input:checked + label{
+    background-color: $checkboxBackgroundForON;
+    border-color: $checkboxBackgroundForON;
+    &::after{
+      left: $checkboxWidth - $switcherWidth + $interspace;
+    }
+  }
+
+  & input {
+    opacity: 0;
+  }
+}
