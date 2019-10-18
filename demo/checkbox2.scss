@@ -1,3 +1,9 @@
+/*
+<div class="checkboxWrapper">
+    <input type="checkbox" value="" id="slideID" name="slide" checked>
+    <label for="slideID"></label>
+</div>
+*/
 
 * { padding: 0; margin: 0; box-sizing: border-box; }
 *::after{ box-sizing: border-box; }
@@ -54,6 +60,6 @@ $interspace: 3px; /* 按钮与背景边框间隙大小 */
   }
 
   & input {
-    opacity: 0;
+    display: none;
   }
 }

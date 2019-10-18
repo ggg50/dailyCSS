@@ -1,0 +1,80 @@
+/* html
+<div class="checkboxWrapper">
+    <input type="checkbox" value="" id="slideID" name="slide" checked>
+    <label for="slideID"></label>
+</div>
+*/
+
+/* description:
+SwitchingTime : 按钮切换时间
+*/
+
+* { padding: 0; margin: 0; box-sizing: border-box; }
+*::after{ box-sizing: border-box; }
+*::before{ box-sizing: border-box; }
+
+$checkboxSize: 2em;
+$checkboxWidthTimes: 2;
+$checkboxFontSizeTimes: 0.5;
+$checkboxFontFamily: sans-serif;
+$checkboxBackgroundForOFF: #888;
+$checkboxBackgroundForON: #86d993;
+$SwitchingTime: 0.2s;
+$checkboxContentForOFF: "OFF";
+$checkboxContentForON: "ON";
+
+$checkboxWidth: $checkboxWidthTimes * $checkboxSize;
+$checkboxFontSize: $checkboxFontSizeTimes * $checkboxSize;
+
+.checkboxWrapper {
+  & label {
+    font-size: inherit;
+    display: block;
+    width: $checkboxWidth;
+    height: $checkboxSize;
+    background-color: $checkboxBackgroundForOFF;
+    transform: skew(-10deg);
+    position: relative;
+    overflow: hidden;
+    transition: all $SwitchingTime ease;
+    line-height: $checkboxSize;
+
+    &::before, &::after {
+      content: $checkboxContentForOFF;
+      font-family: $checkboxFontFamily;
+      font-size: $checkboxFontSize;
+      font-size: 1em;
+      color: white;
+      font-weight: bold;
+      text-align: center;
+      position: absolute;
+      transition: all $SwitchingTime ease;
+      left: 0px;
+      top: 0px;
+      width: 100%;
+      height: 100%;
+      transform: skew(10deg);
+    }
+    &::after {
+      left: 100%;
+      content: $checkboxContentForON;
+    }
+  }
+  & input:checked {
+    & + label {
+      background-color: $checkboxBackgroundForON;
+
+      &::before {
+        left: -100%;
+      }
+
+      &::after {
+        left: 0;
+      }
+    }
+  }
+
+  & input {
+    display: none;
+  }
+}
