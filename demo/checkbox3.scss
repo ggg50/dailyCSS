@@ -13,7 +13,7 @@ SwitchingTime : 按钮切换时间
 *::after{ box-sizing: border-box; }
 *::before{ box-sizing: border-box; }
 
-$checkboxSize: 2em;
+$checkboxSize: 2em; /* 支持 em, rem, vw, px */
 $checkboxWidthTimes: 2;
 $checkboxFontSizeTimes: 0.5;
 $checkboxFontFamily: sans-serif;
