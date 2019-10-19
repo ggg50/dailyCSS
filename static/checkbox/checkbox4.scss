@@ -1,0 +1,67 @@
+/*
+<div class="checkboxWrapper">
+    <input type="checkbox" value="" id="slideID" name="slide" checked>
+    <label for="slideID"></label>
+</div>
+*/
+
+
+* { padding: 0; margin: 0; box-sizing: border-box; }
+*::after{ box-sizing: border-box; }
+
+$checkboxSize: 20px;
+$checkboxWidthTimes: 2.5;
+$switcherWidthTimes: 1.3; /* 可以是椭圆形的内部按钮，可自行设置宽高比 */
+$checkboxWidth: $checkboxWidthTimes * $checkboxSize;
+$switcherWidth: $checkboxSize * $switcherWidthTimes;
+$checkboxColorForOFF: #f2f2f2;
+$checkboxColorForON: #7FC6A6;
+
+$interspace: 3px; /* 按钮与背景边框间隙大小 */
+$checkboxBorderSize: 4px;
+$switchingTimeCost: 0.2s;
+
+.checkboxWrapper {
+  width: $checkboxWidth;
+  height: $checkboxSize;
+  position: relative;
+
+  & label {
+    display: block;
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    width: $checkboxWidth + 2 * $interspace;
+    height: $checkboxSize + 2 * $interspace;
+    box-sizing: content-box;
+    border-radius: $checkboxWidth;
+    transition: all $switchingTimeCost ease;
+    overflow: hidden;
+    border: $checkboxBorderSize solid $checkboxColorForOFF;
+
+    &::after {
+      content: "";
+      width: $switcherWidth;
+      height: $checkboxSize;
+      background-color: $checkboxColorForOFF;
+      transition: left $switchingTimeCost ease;
+      border-radius: 2 * $switcherWidth;
+      position: absolute;
+      top: $interspace;
+      left: $interspace;
+    }
+  }
+
+  & input:checked + label{
+    border-color: $checkboxColorForON;
+    &::after{
+      left: $checkboxWidth - $switcherWidth + $interspace;
+      background-color: $checkboxColorForON;
+    }
+  }
+
+  & input {
+    display: none;
+  }
+}
