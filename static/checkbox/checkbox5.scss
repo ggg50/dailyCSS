@@ -1,0 +1,77 @@
+/*
+<div class="checkboxWrapper">
+    <input type="checkbox" value="" id="slideID" name="slide" checked>
+    <label for="slideID"></label>
+</div>
+*/
+
+
+* { padding: 0; margin: 0; box-sizing: border-box; }
+*::before, *::after{ box-sizing: border-box; }
+
+$checkboxSize: 30px;
+$checkboxWidthTimes: 2.0;
+$checkboxFontSizeTimes: 0.6;
+$checkboxBackgroundColorForOFF: #FF3A19;
+$checkboxBackgroundColorForON: #7FC6A6;
+$checkboxTextForOFF: "OFF";
+$checkboxTextForON: "ON";
+$checkboxBorderRadiusSize: 5px;
+$switchingTimeCost: 0.2s;
+$checkboxFontColor: #fff;
+
+$checkboxFontSize: $checkboxSize * $checkboxFontSizeTimes;
+$checkboxWidth: $checkboxWidthTimes * $checkboxSize;
+
+.checkboxWrapper {
+  input {
+    display: none;
+    &:checked + label {
+      &::before {
+        transform: rotateY(180deg);
+      }
+      &::after {
+        transform: rotateY(0deg);
+      }
+    }
+  }
+
+  & label {
+    display: block;
+    width: $checkboxWidth;
+    height: $checkboxSize;
+    perspective: 100px;
+    line-height: $checkboxSize;
+    text-align: center;
+    position: relative;
+
+    &::before, &::after{
+      content: $checkboxTextForON;
+      display: block;
+      width: $checkboxWidth;
+      height: $checkboxSize;
+      background-color: $checkboxBackgroundColorForON;
+      font-size: $checkboxFontSize;
+      font-weight: bold;
+      color: $checkboxFontColor;
+      transform: rotateY(0deg);
+      transition: all $switchingTimeCost ease;
+      backface-visibility: hidden;
+      border-radius: $checkboxBorderRadiusSize;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    &::after {
+      content: $checkboxTextForOFF;
+      transform: rotateY(-180deg);
+      background-color: $checkboxBackgroundColorForOFF;
+    }
+  }
+}
+
+/* 提示
+perspective 是设置给它的 child 的。
+overflow: hidden; 在 label 设置 overflow: hidden 会导致 3d 效果无效
+*/
