@@ -6,61 +6,62 @@
     <title></title>
     <style>
     @charset "UTF-8";
-  * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-  }
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
 
-  *::before, *::after {
-    box-sizing: border-box;
-  }
+    *::before, *::after {
+      box-sizing: border-box;
+    }
 
-  body {
-    margin: 30px;
-  }
+    body {
+      margin: 30px;
+    }
 
-  /* 可以是椭圆形的内部按钮，可自行设置宽高比 */
-  .checkboxWrapper input {
-    display: none;
-  }
-  .checkboxWrapper input:checked + label::before {
-    transform: rotateY(180deg);
-  }
-  .checkboxWrapper input:checked + label::after {
-    transform: rotateY(0deg);
-  }
-  .checkboxWrapper label {
-    display: block;
-    width: 60px;
-    height: 30px;
-    perspective: 100px;
-    line-height: 30px;
-    text-align: center;
-    position: relative;
-  }
-  .checkboxWrapper label::before, .checkboxWrapper label::after {
-    content: "ON";
-    display: block;
-    width: 60px;
-    height: 30px;
-    background-color: #7FC6A6;
-    font-size: 18px;
-    font-weight: bold;
-    color: #fff;
-    transform: rotateY(0deg);
-    transition: all 0.2s ease;
-    backface-visibility: hidden;
-    border-radius: 5px;
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
-  .checkboxWrapper label::after {
-    content: "OFF";
-    transform: rotateY(-180deg);
-    background-color: #FF3A19;
-  }
+    .checkboxWrapper input {
+      display: none;
+    }
+    .checkboxWrapper input:checked + label::before {
+      transform: rotateY(180deg);
+    }
+    .checkboxWrapper input:checked + label::after {
+      transform: rotateY(0deg);
+    }
+    .checkboxWrapper label {
+      display: block;
+      width: 60px;
+      height: 30px;
+      perspective: 100px;
+      line-height: 30px;
+      text-align: center;
+      position: relative;
+    }
+    .checkboxWrapper label::before, .checkboxWrapper label::after {
+      content: "OFF";
+      display: block;
+      width: 60px;
+      height: 30px;
+      background-color: #FF3A19;
+      font-size: 18px;
+      font-weight: bold;
+      color: #fff;
+      transform: rotateY(0deg);
+      transition: all 0.2s ease;
+      backface-visibility: hidden;
+      border-radius: 5px;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    .checkboxWrapper label::after {
+      content: "ON";
+      transform: rotateY(-180deg);
+      background-color: #7FC6A6;
+    }
+
+
 
     </style>
   </head>
