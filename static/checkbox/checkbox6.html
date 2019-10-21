@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,maximum-scale=1.0,minimum-scale=1.0"/>
+    <title></title>
+    <style>
+    @charset "UTF-8";
+
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 60px;
+      background-color: #1E314F;
+    }
+
+    .checkboxWrapper {
+      width: 2em;
+      height: 3.6em;
+      position: relative;
+    }
+    .checkboxWrapper label {
+      display: block;
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      width: 3.6em;
+      height: 2em;
+      box-sizing: content-box;
+      border-radius: 2em;
+      background-color: #749DD6;
+      transition: all 0.2s ease;
+      border: 2px solid #749DD6;
+      line-height: 2em;
+    }
+    .checkboxWrapper label::before, .checkboxWrapper label::after {
+      content: "AM";
+      font-size: 1em;
+      color: #fff;
+      position: absolute;
+      font-weight: bold;
+    }
+    .checkboxWrapper label::before {
+      left: 0;
+      transform: translateX(-150%);
+    }
+    .checkboxWrapper label::after {
+      content: "PM";
+      color: #749ED7;
+      right: 0;
+      transform: translateX(150%);
+    }
+    .checkboxWrapper label .toggleHandler {
+      content: "";
+      width: 2em;
+      height: 2em;
+      background-color: #FFE5B5;
+      transition: left 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      border-radius: 2em;
+      position: absolute;
+      top: 0;
+      left: 1.6em;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+      z-index: 1;
+    }
+    .checkboxWrapper label .toggleHandler .crater {
+      position: absolute;
+      background-color: #E8CDA5;
+      opacity: 1;
+      transition: all 0.2s ease-in-out;
+      border-radius: 50%;
+    }
+    .checkboxWrapper label .toggleHandler .crater.crater1 {
+      padding: 5%;
+      left: 20%;
+      top: 30%;
+    }
+    .checkboxWrapper label .toggleHandler .crater.crater2 {
+      padding: 8%;
+      left: 40%;
+      top: 60%;
+    }
+    .checkboxWrapper label .toggleHandler .crater.crater3 {
+      padding: 10%;
+      left: 60%;
+      top: 30%;
+    }
+    .checkboxWrapper label .star {
+      position: absolute;
+      background-color: #ffffff;
+      transition: all 0.3s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+      height: 2px;
+      width: 2px;
+      border-radius: 50%;
+      z-index: 0;
+    }
+    .checkboxWrapper label .star.star1 {
+      height: 4px;
+      width: 4px;
+      top: 40%;
+      left: 25%;
+    }
+    .checkboxWrapper label .star.star2 {
+      top: 20%;
+      left: 30%;
+    }
+    .checkboxWrapper label .star.star3 {
+      top: 55%;
+      left: 35%;
+    }
+    .checkboxWrapper label .star.star4, .checkboxWrapper label .star.star5, .checkboxWrapper label .star.star6 {
+      transition: all 300ms 0 cubic-bezier(0.445, 0.05, 0.55, 0.95);
+      opacity: 1;
+    }
+    .checkboxWrapper label .star.star4 {
+      top: 30%;
+      left: 10%;
+      transition: all 300ms 200ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
+    }
+    .checkboxWrapper label .star.star5 {
+      height: 3px;
+      width: 3px;
+      top: 70%;
+      left: 20%;
+      transition: all 300ms 300ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
+    }
+    .checkboxWrapper label .star.star6 {
+      top: 80%;
+      left: 30%;
+      transition: all 300ms 400ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
+    }
+    .checkboxWrapper input:checked + label {
+      background-color: #83D8FF;
+      border: 2px solid #83D8FF;
+    }
+    .checkboxWrapper input:checked + label::before {
+      color: #749ED7;
+    }
+    .checkboxWrapper input:checked + label::after {
+      color: #fff;
+    }
+    .checkboxWrapper input:checked + label .toggleHandler {
+      left: 0;
+      background-color: #FFCF96;
+    }
+    .checkboxWrapper input:checked + label .toggleHandler .crater {
+      opacity: 0;
+    }
+    .checkboxWrapper input:checked + label .star1, .checkboxWrapper input:checked + label .star2, .checkboxWrapper input:checked + label .star3 {
+      width: 1.8em;
+      height: 3px;
+    }
+    .checkboxWrapper input:checked + label .star4, .checkboxWrapper input:checked + label .star5, .checkboxWrapper input:checked + label .star6 {
+      transform: translateX(3px);
+      opacity: 0;
+    }
+    .checkboxWrapper input:checked + label .star1 {
+      z-index: 1;
+    }
+    .checkboxWrapper input {
+      display: none;
+    }
+
+    </style>
+  </head>
+  <body>
+  <div class="checkboxWrapper">
+      <input type="checkbox" value="" id="myCheckbox" name="slide" checked>
+      <label for="myCheckbox">
+        <div class="toggleHandler">
+          <div class="crater crater1"></div>
+          <div class="crater crater2"></div>
+          <div class="crater crater3"></div>
+        </div>
+        <div class="star star1"></div>
+        <div class="star star2"></div>
+        <div class="star star3"></div>
+        <div class="star star4"></div>
+        <div class="star star5"></div>
+        <div class="star star6"></div>
+      </label>
+  </div>
+  </body>
+</html>

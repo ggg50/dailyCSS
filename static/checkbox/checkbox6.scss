@@ -1,0 +1,200 @@
+/* html
+<div class="checkboxWrapper">
+    <input type="checkbox" value="" id="myCheckbox" name="slide" checked>
+    <label for="myCheckbox">
+      <div class="toggleHandler">
+        <div class="crater crater1"></div>
+        <div class="crater crater2"></div>
+        <div class="crater crater3"></div>
+      </div>
+      <div class="star star1"></div>
+      <div class="star star2"></div>
+      <div class="star star3"></div>
+      <div class="star star4"></div>
+      <div class="star star5"></div>
+      <div class="star star6"></div>
+    </label>
+</div>
+*/
+
+
+* { padding: 0; margin: 0; box-sizing: border-box; }
+*::before, *::after{ box-sizing: border-box; }
+
+$checkboxSize: 2em;
+$checkboxWidthTimes: 1.8;
+$checkboxFontSizeTimes: 0.5;
+$checkboxWidth: $checkboxWidthTimes * $checkboxSize;
+$checkboxBackgroundForON: #83D8FF;
+$checkboxBackgroundForOFF: #749DD6;
+$checkboxTextForOFF: "PM";
+$checkboxTextForON: "AM";
+$checkboxTextColorForOFF: #fff;
+$checkboxTextColorForON: #749ED7;
+$checkboxToggleColorForON: #FFCF96;
+$checkboxToggleColorForOFF: #FFE5B5;
+$interspace: 2px; /* 按钮与背景边框间隙大小 */
+$starSize: 2px; /* 星星大小 */
+
+$toggleSize: $checkboxSize;
+$checkboxFontSize: $checkboxSize * $checkboxFontSizeTimes;
+
+.checkboxWrapper {
+  width: $checkboxSize;
+  height: $checkboxWidth;
+  position: relative;
+
+  & label {
+    display: block;
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    width: $checkboxWidth;
+    height: $checkboxSize;
+    box-sizing: content-box;
+    border-radius: $checkboxSize;
+    background-color: $checkboxBackgroundForOFF;
+    transition: all 0.2s ease;
+    border: $interspace solid $checkboxBackgroundForOFF;
+    line-height: $checkboxSize;
+
+    &::before, &::after {
+      content: $checkboxTextForON;
+      font-size: $checkboxFontSize;
+      color: $checkboxTextColorForOFF;
+      position: absolute;
+      font-weight: bold;
+    }
+    &::before {
+      left: 0;
+      transform: translateX(-150%);
+    }
+    &::after {
+      content: $checkboxTextForOFF;
+      color: $checkboxTextColorForON;
+      right: 0;
+      transform: translateX(150%);
+    }
+
+    & .toggleHandler {
+      content: "";
+      width: $toggleSize;
+      height: $toggleSize;
+      background-color: $checkboxToggleColorForOFF;
+      transition: left 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      border-radius: $checkboxSize;
+      position: absolute;
+      top: 0;
+      left:  $checkboxWidth - $toggleSize;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+      z-index: 1;
+
+      & .crater {
+        position: absolute;
+        background-color: #E8CDA5;
+        opacity: 1;
+        transition: all 0.2s ease-in-out;
+        border-radius: 50%;
+        &.crater1 {
+          padding: 5%;
+          left: 20%;
+          top: 30%;
+        }
+        &.crater2 {
+          padding: 8%;
+          left: 40%;
+          top: 60%;
+        }
+        &.crater3 {
+          padding: 10%;
+          left: 60%;
+          top: 30%;
+        }
+      }
+    }
+
+    & .star {
+      position: absolute;
+      background-color: #ffffff;
+      transition: all 0.3s cubic-bezier(0.445, 0.05, 0.55, 0.95);;
+      height: $starSize;
+      width: $starSize;
+      border-radius: 50%;
+      z-index: 0;
+
+      &.star1 {
+        height: $starSize * 2;
+        width: $starSize * 2;
+        top: 40%;
+        left: 25%;
+      }
+      &.star2 {
+        top: 20%;
+        left: 30%;
+      }
+      &.star3 {
+        top: 55%;
+        left: 35%;
+      }
+
+      &.star4, &.star5, &.star6 {
+        transition: all 300ms 0 cubic-bezier(0.445, 0.05, 0.55, 0.95);
+        opacity: 1;
+      }
+      &.star4 {
+        top: 30%;
+        left: 10%;
+        transition: all 300ms 200ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
+      }
+      &.star5 {
+        height: $starSize * 1.5;
+        width: $starSize * 1.5;
+        top: 70%;
+        left: 20%;
+        transition: all 300ms 300ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
+      }
+      &.star6 {
+        top: 80%;
+        left: 30%;
+        transition: all 300ms 400ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
+      }
+    }
+  }
+
+  & input:checked + label{
+    background-color: $checkboxBackgroundForON;
+    border: $interspace solid $checkboxBackgroundForON;
+
+    &::before {
+      color: $checkboxTextColorForON;
+    }
+    &::after {
+      color: $checkboxTextColorForOFF;
+    }
+
+    & .toggleHandler{
+      left: 0 ;
+      background-color: $checkboxToggleColorForON;
+      & .crater {
+        opacity: 0;
+      }
+    }
+
+    & .star1, & .star2, & .star3 {
+      width: $checkboxWidth * 0.5;
+      height: $starSize * 1.5;
+    }
+    & .star4, & .star5, & .star6 {
+      transform: translateX($starSize * 1.5);
+      opacity: 0;
+    }
+    & .star1 {
+      z-index: 1;
+    }
+  }
+
+  & input {
+    display: none;
+  }
+}
