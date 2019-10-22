@@ -1,0 +1,147 @@
+/*html
+<div class="checkboxWrapper">
+    <input type="checkbox" value="" id="myCheckbox" name="slide" checked>
+    <label for="myCheckbox">
+      <div class="slideCard"></div>
+    </label>
+</div>
+
+<br />
+<br />
+
+<div class="checkboxWrapper2">
+    <input type="checkbox" value="" id="myCheckbox2" name="slide" >
+    <label for="myCheckbox2">
+      <div class="slideCardForOFF"></div>
+      <div class="slideCardForON"></div>
+    </label>
+</div>
+*/
+
+
+* { padding: 0; margin: 0; box-sizing: border-box; }
+*::before, *::after{ box-sizing: border-box; }
+
+$checkboxSize: 3em;
+$checkboxWidthTimes: 3;
+$checkboxFontSizeTimes: 0.6;
+$checkboxFontSize: $checkboxSize * $checkboxFontSizeTimes;
+$checkboxWidth: $checkboxSize * $checkboxWidthTimes;
+$checkboxBackgroundColorForOFF: tomato;
+$checkboxBackgroundColorForON: limegreen;
+$checkboxTextForOFF: "OFF";
+$checkboxTextForON: "ON";
+$toggleSpeed: 0.3s;
+
+
+.checkboxWrapper {
+  display: block;
+  width: $checkboxWidth;
+  height: $checkboxSize;
+  line-height: $checkboxSize;
+
+  & label{
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    position: relative;
+
+    & .slideCard, &::before, &::after {
+      position: absolute;
+      height: 100%;
+      width:  50%;
+      text-align: center;
+    }
+
+    &::before, &::after {
+      content: $checkboxTextForON;
+      font-size: $checkboxFontSize;
+    }
+    &::before {
+      left: 0;
+    }
+    &::after {
+      right: 0;
+      content: $checkboxTextForOFF;
+    }
+
+    & .slideCard {
+      background-color: $checkboxBackgroundColorForOFF;
+      transition: all $toggleSpeed ease;
+      z-index: 1;
+      left: 0;
+    }
+  }
+
+  & input {
+    display: none;
+
+    &:checked + label .slideCard {
+      background-color: $checkboxBackgroundColorForON;
+      left: 50%;
+    }
+  }
+}
+
+
+
+.checkboxWrapper2 {
+  display: block;
+  width: $checkboxWidth;
+  height: $checkboxSize;
+  line-height: $checkboxSize;
+
+  & label{
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    position: relative;
+
+    & .slideCardForOFF, & .slideCardForON, &::before, &::after {
+      position: absolute;
+      height: 100%;
+      width:  50%;
+      text-align: center;
+      transition: all $toggleSpeed ease;
+    }
+
+    &::before, &::after {
+      content: $checkboxTextForON;
+      font-size: $checkboxFontSize;
+    }
+    &::before {
+      left: 0;
+    }
+    &::after {
+      right: 0;
+      content: $checkboxTextForOFF;
+    }
+
+    & .slideCardForOFF {
+      background-color: $checkboxBackgroundColorForOFF;
+      left: 0;
+      width: 50%;
+      z-index: 1;
+    }
+
+    & .slideCardForON {
+      background-color: $checkboxBackgroundColorForON;
+      right: 0;
+      z-index: 1;
+      width: 0;
+    }
+  }
+
+  & input {
+    display: none;
+
+    &:checked + label .slideCardForOFF {
+      width: 0;
+    }
+    &:checked + label .slideCardForON {
+      width: 50%;
+    }
+  }
+}

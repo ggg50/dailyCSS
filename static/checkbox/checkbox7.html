@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,maximum-scale=1.0,minimum-scale=1.0"/>
+    <title></title>
+    <style>
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+*::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 60px;
+  background-color: #eee;
+}
+
+.checkboxWrapper {
+  display: block;
+  width: 9em;
+  height: 3em;
+  line-height: 3em;
+}
+.checkboxWrapper label {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  position: relative;
+}
+.checkboxWrapper label .slideCard, .checkboxWrapper label::before, .checkboxWrapper label::after {
+  position: absolute;
+  height: 100%;
+  width: 50%;
+  text-align: center;
+}
+.checkboxWrapper label::before, .checkboxWrapper label::after {
+  content: "ON";
+  font-size: 1.8em;
+}
+.checkboxWrapper label::before {
+  left: 0;
+}
+.checkboxWrapper label::after {
+  right: 0;
+  content: "OFF";
+}
+.checkboxWrapper label .slideCard {
+  background-color: tomato;
+  transition: all 0.3s ease;
+  z-index: 1;
+  left: 0;
+}
+.checkboxWrapper input {
+  display: none;
+}
+.checkboxWrapper input:checked + label .slideCard {
+  background-color: limegreen;
+  left: 50%;
+}
+
+.checkboxWrapper2 {
+  display: block;
+  width: 9em;
+  height: 3em;
+  line-height: 3em;
+}
+.checkboxWrapper2 label {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  position: relative;
+}
+.checkboxWrapper2 label .slideCardForOFF, .checkboxWrapper2 label .slideCardForON, .checkboxWrapper2 label::before, .checkboxWrapper2 label::after {
+  position: absolute;
+  height: 100%;
+  width: 50%;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+.checkboxWrapper2 label::before, .checkboxWrapper2 label::after {
+  content: "ON";
+  font-size: 1.8em;
+}
+.checkboxWrapper2 label::before {
+  left: 0;
+}
+.checkboxWrapper2 label::after {
+  right: 0;
+  content: "OFF";
+}
+.checkboxWrapper2 label .slideCardForOFF {
+  background-color: tomato;
+  left: 0;
+  width: 50%;
+  z-index: 1;
+}
+.checkboxWrapper2 label .slideCardForON {
+  background-color: limegreen;
+  right: 0;
+  z-index: 1;
+  width: 0;
+}
+.checkboxWrapper2 input {
+  display: none;
+}
+.checkboxWrapper2 input:checked + label .slideCardForOFF {
+  width: 0;
+}
+.checkboxWrapper2 input:checked + label .slideCardForON {
+  width: 50%;
+}
+
+
+
+    </style>
+  </head>
+  <body>
+    <div class="checkboxWrapper">
+        <input type="checkbox" value="" id="myCheckbox" name="slide" checked>
+        <label for="myCheckbox">
+          <div class="slideCard"></div>
+        </label>
+    </div>
+
+    <br />
+    <br />
+
+    <div class="checkboxWrapper2">
+        <input type="checkbox" value="" id="myCheckbox2" name="slide" >
+        <label for="myCheckbox2">
+          <div class="slideCardForOFF"></div>
+          <div class="slideCardForON"></div>
+        </label>
+    </div>
+  </body>
+</html>
