@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,maximum-scale=1.0,minimum-scale=1.0"/>
+    <title></title>
+    <style>
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 60px;
+      background-color: #eee;
+    }
+
+    .checkboxWrapper {
+      display: block;
+      width: 6em;
+      height: 2em;
+      line-height: 2em;
+    }
+    .checkboxWrapper label {
+      display: block;
+      width: 100%;
+      height: 100%;
+      background-color: #fff;
+      position: relative;
+      perspective: 200px;
+    }
+    .checkboxWrapper label .flipCard, .checkboxWrapper label::before, .checkboxWrapper label::after {
+      position: absolute;
+      height: 100%;
+      width: 50%;
+      text-align: center;
+    }
+    .checkboxWrapper label::before, .checkboxWrapper label::after {
+      content: "ON";
+      font-size: 1.2em;
+    }
+    .checkboxWrapper label::before {
+      left: 0;
+    }
+    .checkboxWrapper label::after {
+      right: 0;
+      content: "OFF";
+    }
+    .checkboxWrapper label .flipCard {
+      left: 50%;
+      display: block;
+      background-color: tomato;
+      transition: all 0.3s ease;
+      z-index: 1;
+      transform: rotateY(-180deg);
+      transform-origin: center left;
+      transform-style: preserve-3d;
+    }
+    .checkboxWrapper input {
+      display: none;
+    }
+    .checkboxWrapper input:checked + label .flipCard {
+      background-color: limegreen;
+      transform: rotateY(0deg);
+    }
+
+    </style>
+  </head>
+  <body>
+    <div class="checkboxWrapper">
+        <input type="checkbox" value="" id="myCheckbox" name="slide" checked>
+        <label for="myCheckbox">
+          <div class="flipCard"></div>
+        </label>
+    </div>
+  </body>
+</html>
