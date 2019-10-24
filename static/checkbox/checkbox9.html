@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,maximum-scale=1.0,minimum-scale=1.0"/>
+    <title></title>
+    <style>
+    /* html
+    <div class="checkboxWrapper">
+        <input type="checkbox" value="" id="myCheckbox" name="slide" checked>
+        <label for="myCheckbox">
+          <div class="flipCard"></div>
+        </label>
+    </div>
+    */
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 60px;
+      background-color: #eee;
+    }
+
+    @keyframes growForOFF {
+      0% {
+        transform: translateX(0);
+      }
+      50% {
+        transform: translateX(50%) scale(2);
+      }
+      100% {
+        transform: translateX(100%);
+      }
+    }
+    @keyframes growForON {
+      0% {
+        transform: translateX(100%);
+      }
+      50% {
+        transform: translateX(50%) scale(2);
+      }
+      100% {
+        transform: translateX(0);
+      }
+    }
+    .checkboxWrapper2 {
+      display: block;
+      width: 6em;
+      height: 2em;
+      line-height: 2em;
+    }
+    .checkboxWrapper2 label {
+      display: block;
+      width: 100%;
+      height: 100%;
+      background-color: #fff;
+      position: relative;
+    }
+    .checkboxWrapper2 label .growCard, .checkboxWrapper2 label::before, .checkboxWrapper2 label::after {
+      position: absolute;
+      height: 100%;
+      width: 50%;
+      text-align: center;
+    }
+    .checkboxWrapper2 label::before, .checkboxWrapper2 label::after {
+      content: "ON";
+      font-size: 1.2em;
+    }
+    .checkboxWrapper2 label::before {
+      left: 0;
+    }
+    .checkboxWrapper2 label::after {
+      right: 0;
+      content: "OFF";
+    }
+    .checkboxWrapper2 label .growCard {
+      background-color: tomato;
+      z-index: 1;
+      left: 0;
+      transition: all 0.5s ease;
+      animation: growForON 0.5s both;
+    }
+    .checkboxWrapper2 input {
+      display: none;
+    }
+    .checkboxWrapper2 input:checked + label .growCard {
+      animation: growForOFF 0.5s both;
+      background-color: limegreen;
+    }
+    </style>
+  </head>
+  <body>
+      <div class="checkboxWrapper2">
+          <input type="checkbox" value="" id="myCheckbox2" name="slide" >
+          <label for="myCheckbox2">
+            <div class="growCard"></div>
+          </label>
+      </div>
+  </body>
+</html>
