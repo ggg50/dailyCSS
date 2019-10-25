@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,maximum-scale=1.0,minimum-scale=1.0"/>
+    <title></title>
+    <style>
+    @charset "UTF-8";
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 60px;
+      background-color: #202020;
+    }
+
+    @keyframes toggleOpen {
+      0% {
+        left: 4px;
+        width: 40px;
+      }
+      50% {
+        left: calc(88px - 40px + 4px);
+        width: 40px;
+        background-color: #444249;
+        content: "";
+      }
+      100% {
+        left: 4px;
+        width: 88px;
+        background-color: #89c2da;
+        content: "ON";
+      }
+    }
+    @keyframes toggleClose {
+      0% {
+        left: 4px;
+        width: 88px;
+        background-color: #89c2da;
+        content: "ON";
+      }
+      50% {
+        left: calc(88px - 40px + 4px);
+        width: 40px;
+        background-color: #444249;
+        content: "";
+      }
+      100% {
+        left: 4px;
+        width: 40px;
+      }
+    }
+    .checkboxWrapper {
+      width: 88px;
+      height: 40px;
+      position: relative;
+    }
+    .checkboxWrapper label {
+      display: block;
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      width: calc(88px + 2 * 4px);
+      height: calc(40px + 2 * 4px);
+      box-sizing: content-box;
+      border-radius: 88px;
+      transition: all 0.4s ease;
+      border: 2px solid #444249;
+      line-height: 40px;
+      text-align: center;
+    }
+    .checkboxWrapper label::before {
+      content: "OFF";
+      display: block;
+      position: absolute;
+      right: 4px;
+      top: 4px;
+      font-size: 20px;
+      width: 44px;
+      height: 40px;
+      color: #444249;
+    }
+    .checkboxWrapper label::after {
+      content: "";
+      width: 40px;
+      height: 40px;
+      background-color: #444249;
+      border-radius: 80px;
+      color: #444249;
+      position: absolute;
+      font-size: 32px;
+      top: 4px;
+      left: 4px;
+      animation: toggleClose 0.4s both;
+    }
+    .checkboxWrapper input:checked + label {
+      border-color: #89c2da;
+    }
+    .checkboxWrapper input:checked + label::before {
+      content: "";
+    }
+    .checkboxWrapper input:checked + label::after {
+      animation: toggleOpen 0.4s both;
+    }
+    .checkboxWrapper input {
+      display: none;
+    }
+
+    /*# sourceMappingURL=test.css.map */
+
+    </style>
+  </head>
+  <body>
+    <div class="checkboxWrapper">
+        <input type="checkbox" value="" id="myCheckbox" name="slide" checked>
+        <label for="myCheckbox">
+        </label>
+    </div>
+  </body>
+</html>
