@@ -1,0 +1,96 @@
+/* html
+<div class="checkboxWrapper">
+    <input type="checkbox" value="" id="myCheckbox" name="slide" checked>
+    <label for="myCheckbox">
+      <div class="toggle"></div>
+    </label>
+</div>
+*/
+
+* { padding: 0; margin: 0; box-sizing: border-box; }
+*::before, *::after{ box-sizing: border-box; }
+
+$checkboxSize: 40px; /* 支持 em, rem, vw, px, rpx*/
+$checkboxWidthTimes: 2;
+$checkboxWidth: $checkboxWidthTimes * $checkboxSize;
+$checkboxColorForOFF: #202020;
+$checkboxColorForON: #62a551;
+$checkboxBorderSize: 5px;
+$togglingTimeCost: 0.4s;
+
+
+
+.checkboxWrapper {
+  width: $checkboxWidth;
+  height: $checkboxSize;
+  position: relative;
+
+  & label {
+    display: block;
+    width: $checkboxWidth;
+    height: $checkboxSize;
+    border-radius: $checkboxWidth;
+    // background-color: red;
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-sizing: content-box;
+    background-color: $checkboxColorForOFF;
+    border: $checkboxColorForOFF solid $checkboxBorderSize;
+
+    & .toggle {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: $checkboxSize;
+      height: $checkboxSize;
+      transform: rotate(0);
+      background-color: white;
+      border-radius: $checkboxSize;
+      transition: all $togglingTimeCost ease;
+
+      &::before, &::after {
+        content: "";
+        position: absolute;
+        width: $checkboxSize * 0.8;
+        background-color: $checkboxColorForOFF;
+        height: 4px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(45deg);
+        border-radius: $checkboxSize * 0.8;
+        transition: all $togglingTimeCost ease;
+      }
+      &::after {
+        transform: translate(-50%, -50%) rotate(-45deg);
+      }
+    }
+  }
+
+  & input:checked + label{
+      background-color: $checkboxColorForON;
+      border: $checkboxColorForON solid $checkboxBorderSize;
+
+      & .toggle {
+        left: $checkboxWidth - $checkboxSize;
+        transform: rotate(360deg);
+
+        &::before {
+          background-color: $checkboxColorForON;
+          left: 25%;
+          top: 65%;
+          width: $checkboxSize * 0.4;
+        }
+        &::after {
+          background-color: $checkboxColorForON;
+          left: 60%;
+          top: 55%;
+          width: $checkboxSize * 0.7;
+        }
+      }
+  }
+
+  & input {
+    display: none;
+  }
+}

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,maximum-scale=1.0,minimum-scale=1.0"/>
+    <title></title>
+    <style>
+@charset "UTF-8";
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+*::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 60px;
+}
+
+/* 支持 em, rem, vw, px, rpx*/
+.checkboxWrapper {
+  width: 80px;
+  height: 40px;
+  position: relative;
+}
+.checkboxWrapper label {
+  display: block;
+  width: 80px;
+  height: 40px;
+  border-radius: 80px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  box-sizing: content-box;
+  background-color: #202020;
+  border: #202020 solid 5px;
+}
+.checkboxWrapper label .toggle {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 40px;
+  height: 40px;
+  transform: rotate(0);
+  background-color: white;
+  border-radius: 40px;
+  transition: all 0.4s ease;
+}
+.checkboxWrapper label .toggle::before, .checkboxWrapper label .toggle::after {
+  content: "";
+  position: absolute;
+  width: 32px;
+  background-color: #202020;
+  height: 4px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  border-radius: 32px;
+  transition: all 0.4s ease;
+}
+.checkboxWrapper label .toggle::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+.checkboxWrapper input:checked + label {
+  background-color: #62a551;
+  border: #62a551 solid 5px;
+}
+.checkboxWrapper input:checked + label .toggle {
+  left: 40px;
+  transform: rotate(360deg);
+}
+.checkboxWrapper input:checked + label .toggle::before {
+  background-color: #62a551;
+  left: 25%;
+  top: 65%;
+  width: 16px;
+}
+.checkboxWrapper input:checked + label .toggle::after {
+  background-color: #62a551;
+  left: 60%;
+  top: 55%;
+  width: 28px;
+}
+.checkboxWrapper input {
+  display: none;
+}
+
+    </style>
+  </head>
+  <body>
+    <div class="checkboxWrapper">
+      <input type="checkbox" value="" id="myCheckbox" name="slide" checked>
+      <label for="myCheckbox">
+        <div class="toggle"></div>
+      </label>
+  </div>
+  </body>
+</html>
