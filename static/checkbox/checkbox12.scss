@@ -1,0 +1,100 @@
+/* html
+<div class="checkboxWrapper">
+    <input type="checkbox" value="" id="myCheckbox" name="slide" checked>
+    <label for="myCheckbox">
+    </label>
+</div>
+*/
+
+* { padding: 0; margin: 0; box-sizing: border-box; }
+*::before, *::after{ box-sizing: border-box; }
+
+$checkboxSize: 40px; /* 支持 em, rem, vw, px, rpx*/
+$checkboxWidthTimes: 2;
+$innerIconTimes: 0.5;
+$innerIconSize: $checkboxSize * $innerIconTimes;
+$checkboxWidth: $checkboxWidthTimes * $checkboxSize;
+
+$checkboxIconLineWidth: 4px;
+$checkboxIconLinewidthForCenterOne: 3px;
+$checkboxIconSpace: 2px; /* 设置按钮两个 Icon 之间的间隙 */
+
+$checkboxBackgroundColor: #f9f8f6;
+$IconColorForOFF: #ccc;
+$IconColorForOFFandHover: #b3b3b3;
+$IconColorForON: #FF9900;
+
+$togglingTimeCost: 0.3s;
+
+.checkboxWrapper {
+  width: $checkboxSize;
+  height: $checkboxSize;
+  position: relative;
+
+  & label {
+    display: block;
+    width: $checkboxSize;
+    height: $checkboxSize;
+    border-radius: 50%;
+    background-color: $checkboxBackgroundColor;
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-shadow: 0 5px 10px 0px #333, 0 10px 20px 0px #cccccc;
+    transition: all $togglingTimeCost ease;
+
+    &::before, &::after {
+      content: "";
+      display: block;
+      box-sizing: border-box;
+      position: absolute;
+      transition: all $togglingTimeCost ease;
+    }
+    &::before {
+      width: $innerIconSize;
+      height: $innerIconSize;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      background-color: transparent;
+      border: $checkboxIconLineWidth solid $IconColorForOFF;
+    }
+    &::after {
+      width: $checkboxIconLinewidthForCenterOne;
+      height: $checkboxIconLineWidth * 3;
+      box-sizing: content-box;
+      background-color: $IconColorForOFF;
+      left: 50%;
+      top: calc(#{$checkboxSize} * 0.5 - #{$innerIconSize} * 0.5 - #{$checkboxIconSpace} - #{$checkboxIconLineWidth} * 0.5);
+      transform: translate(-50%, 0%);
+      border: $checkboxIconSpace solid $checkboxBackgroundColor;
+    }
+  }
+
+  & input:checked + label {
+    box-shadow: 0 2px 5px 0px gray, 0 15px 20px 0px transparent;
+
+    &::before {
+      border: $checkboxIconLineWidth solid $IconColorForON;
+    }
+
+    &::after {
+      background-color: $IconColorForON;
+    }
+  }
+
+  & input:not(:checked) + label:hover {
+    &::before {
+      border: $checkboxIconLineWidth solid $IconColorForOFFandHover;
+    }
+    &::after {
+      background-color: $IconColorForOFFandHover;
+    }
+  }
+
+
+  & input {
+    display: none;
+  }
+}
