@@ -1,0 +1,95 @@
+
+<!-- checkboxWrapper主要用于定位 -->
+<div class="checkboxWrapper">
+  <div class="round">
+    <input type="checkbox" value="" id="slideID" name="slide" checked>
+    <label for="slideID"></label>
+  </div>
+</div>
+
+/* 如果想要方形按钮，把所有 border-radius 样式删除即可*/
+$userScale: 1; /*建议通过改变这个值来调整按钮大小*/
+$baseScale: 0.25;
+$backgroundSize: 100px;/*兼容不同类型单位 vw, em, rem, px*/
+$widthTimes: 3;
+$switcherSizeTimes: 0.8;
+$switchSpeech: 0.4s;
+$checkboxBackgroundColor: #333;
+$colorON: #27ae60;
+$colorOFF: #000;
+$backgroundWidth: $widthTimes * $backgroundSize;
+$switcherSize: $switcherSizeTimes * $backgroundSize;
+
+@mixin positionCenter {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.checkboxWrapper {
+  font-size: inherit;
+  height: 1em;
+  width: 1em;
+  position: relative;
+
+  & .round {
+    @include positionCenter;
+    width: $backgroundSize;
+    height: $backgroundSize;
+    background-color: $checkboxBackgroundColor;
+    position: absolute;
+    transform: translate(-50%, -50%) scale(calc(#{$baseScale} * #{$userScale}));
+    border-radius: 50%;
+    background: #fcfff4;
+    background: linear-gradient(to bottom, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+    box-shadow: inset 0px 5px 5px white, 0px 5px 15px rgba(0, 0, 0, 0.5);
+
+    & label {
+      @include positionCenter;
+      border-radius: 50%;
+      height: 0.73 * $backgroundSize;
+      width: 0.73 * $backgroundSize;
+      z-index: 1;
+      background: linear-gradient(to bottom, #222222 0%, #45484d 100%);
+      box-shadow: inset 0px 5px 5px rgba(0, 0, 0, 0.5), 0px 4px 0px white;
+      cursor: pointer;
+      overflow: hidden;
+
+      &::after {
+        @include positionCenter;
+        content: "";
+        width: 0.58 * $backgroundSize;
+        height: 0.58 * $backgroundSize;
+        z-index: 2;
+        margin-top: -1px;
+        margin-left: -1px;/*这两个用于调节视觉效果*/
+        background: #27ae60;
+        background: linear-gradient(to bottom, #27ae60 0%, #145b32 100%);
+        opacity: 0;
+        border-radius: 50px;
+        box-shadow: inset 0px 4px 4px white, 0px 4px 15px rgba(0, 0, 0, 0.5)
+      }
+      &:hover::after {
+        opacity: 0.3;
+      }
+    }
+}
+
+  & input[type=checkbox] {
+    visibility: hidden;
+    &:checked + label:after {
+      opacity: 1;
+    }
+  }
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+body {
+  background: #3498db;
+}

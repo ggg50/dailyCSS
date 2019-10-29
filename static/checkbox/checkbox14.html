@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,maximum-scale=1.0,minimum-scale=1.0"/>
+    <title></title>
+    <style>
+
+    body {
+      margin: 20px;
+    }
+
+    .checkboxWrapper {
+      font-size: inherit;
+      height: 1em;
+      width: 1em;
+      position: relative;
+    }
+    .checkboxWrapper .round {
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%) scale(calc(0.25 * 1));
+      width: 100px;
+      height: 100px;
+      background-color: #333;
+      border-radius: 50%;
+      background: #fcfff4;
+      background: linear-gradient(to bottom, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+      box-shadow: inset 0px 5px 5px white, 0px 5px 15px rgba(0, 0, 0, 0.5);
+    }
+    .checkboxWrapper .round label {
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      height: 73px;
+      width: 73px;
+      z-index: 1;
+      background: linear-gradient(to bottom, #222222 0%, #45484d 100%);
+      box-shadow: inset 0px 5px 5px rgba(0, 0, 0, 0.5), 0px 4px 0px white;
+      cursor: pointer;
+      overflow: hidden;
+    }
+    .checkboxWrapper .round label::after {
+      display: block;
+      position: absolute;
+      left: 13px;
+      top: 17px;
+      content: "";
+      box-sizing: border-box;
+      width: 50px;
+      height: 30px;
+      border: 12px solid #fcfff4;
+      border-top: none;
+      border-right: none;
+      transform: rotate(-45deg);
+      z-index: 2;
+      margin-top: -1px;
+      margin-left: -1px;
+      /*这两个用于调节视觉效果*/
+      opacity: 0;
+    }
+    .checkboxWrapper .round label:hover::after {
+      opacity: 0.3;
+    }
+    .checkboxWrapper .round input[type=checkbox] {
+      visibility: hidden;
+    }
+    .checkboxWrapper .round input[type=checkbox]:checked + label:after {
+      opacity: 1;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #3498db;
+    }
+
+    /*# sourceMappingURL=test.css.map */
+
+
+    </style>
+  </head>
+  <body>
+    <div class="checkboxWrapper">
+      <div class="round">
+        <input type="checkbox" value="" id="slideID" name="slide" checked>
+        <label for="slideID"></label>
+      </div>
+    </div>
+  </body>
+</html>

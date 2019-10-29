@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,maximum-scale=1.0,minimum-scale=1.0"/>
+    <title></title>
+    <style>@charset "UTF-8";
+
+    @charset "UTF-8";
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 60px;
+      background-color: #fff;
+    }
+
+    /* 如果想要方形按钮，把所有 border-radius 样式删除即可*/
+    /*建议通过改变这个值来调整按钮大小*/
+    /*兼容不同类型单位 vw, em, rem, px*/
+
+    .checkboxWrapper {
+      font-size: inherit;
+      height: 1em;
+      width: 1em;
+      position: relative;
+    }
+    .checkboxWrapper .round {
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100px;
+      height: 100px;
+      background-color: #333;
+      position: absolute;
+      transform: translate(-50%, -50%) scale(calc(0.25 * 1));
+      border-radius: 50%;
+      background: #fcfff4;
+      background: linear-gradient(to bottom, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+      box-shadow: inset 0px 5px 5px white, 0px 5px 15px rgba(0, 0, 0, 0.5);
+    }
+    .checkboxWrapper .round label {
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      height: 73px;
+      width: 73px;
+      z-index: 1;
+      background: linear-gradient(to bottom, #222222 0%, #45484d 100%);
+      box-shadow: inset 0px 5px 5px rgba(0, 0, 0, 0.5), 0px 4px 0px white;
+      cursor: pointer;
+      overflow: hidden;
+    }
+    .checkboxWrapper .round label::after {
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      content: "";
+      width: 58px;
+      height: 58px;
+      z-index: 2;
+      margin-top: -1px;
+      margin-left: -1px;
+      /*这两个用于调节视觉效果*/
+      background: #27ae60;
+      background: linear-gradient(to bottom, #27ae60 0%, #145b32 100%);
+      opacity: 0;
+      border-radius: 50px;
+      box-shadow: inset 0px 4px 4px white, 0px 4px 15px rgba(0, 0, 0, 0.5);
+    }
+    .checkboxWrapper .round label:hover::after {
+      opacity: 0.3;
+    }
+    .checkboxWrapper input[type=checkbox] {
+      visibility: hidden;
+    }
+    .checkboxWrapper input[type=checkbox]:checked + label:after {
+      opacity: 1;
+    }
+
+    * {
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+    }
+
+    body {
+      background: #3498db;
+    }
+
+
+
+
+    </style>
+  </head>
+  <body>
+    <div class="checkboxWrapper">
+      <div class="round">
+        <input type="checkbox" value="" id="slideID" name="slide" checked>
+        <label for="slideID"></label>
+      </div>
+    </div>
+  </body>
+</html>
