@@ -1,0 +1,50 @@
+/* html
+<div class="shadowOwner">
+    <div class="myShadow"></div>
+</div>
+*/
+
+* { padding: 0; margin: 0; box-sizing: border-box; }
+*::before, *::after{ box-sizing: border-box; }
+
+body {
+  margin: 60px;
+  background-color: #fff;
+}
+
+$shadowOwnerWidth: 500px; // 拥有这个 shadow 的 div，宽度；
+$shadowCurvature: 35%; // 调节阴影的弧度，0 ~ 50%；
+$shadowWidth: 100%; // 阴影宽度，默认与拥有者一样宽，可以自己设置；
+$shadow: 0 0 8px black;
+
+.shadowOwner {
+    display: block;
+    width: $shadowOwnerWidth;
+    height: 200px;
+    position: relative;
+    border-bottom: 1px solid #eee;
+
+    & .myShadow {
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: $shadowWidth;
+        height: 50px;
+        overflow: hidden;
+
+        &::after {
+            content: "";
+            display: block;
+            height: 25px;
+            width: 100%;
+            border-radius: calc(#{$shadowCurvature}) / 50%;
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: $shadow;
+        }
+
+    }
+}
